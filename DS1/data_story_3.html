@@ -1,0 +1,366 @@
+<html>
+<body style="background-color:#f3f3f3"
+<head>
+	<title>NHL's Top 200 US Players Birth States</title>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+
+    // Prepare demo data
+    var data = [
+        {
+            "hc-key": "us-ma",
+            "value": 39
+        },
+        {
+            "hc-key": "us-wa",
+            "value": 2
+        },
+        {
+            "hc-key": "us-ca",
+            "value": 2
+        },
+        {
+            "hc-key": "us-or",
+            "value": 1
+        },
+        {
+            "hc-key": "us-wi",
+            "value": 8
+        },
+        {
+            "hc-key": "us-me",
+            "value": 0
+        },
+        {
+            "hc-key": "us-mi",
+            "value": 28
+        },
+        {
+            "hc-key": "us-nv",
+            "value": 0
+        },
+        {
+            "hc-key": "us-nm",
+            "value": 0
+        },
+        {
+            "hc-key": "us-co",
+            "value": 1
+        },
+        {
+            "hc-key": "us-wy",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ks",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ne",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ok",
+            "value": 1
+        },
+        {
+            "hc-key": "us-mo",
+            "value": 3
+        },
+        {
+            "hc-key": "us-il",
+            "value": 9
+        },
+        {
+            "hc-key": "us-in",
+            "value": 4
+        },
+        {
+            "hc-key": "us-vt",
+            "value": 1
+        },
+        {
+            "hc-key": "us-ar",
+            "value": 0
+        },
+        {
+            "hc-key": "us-tx",
+            "value": 2
+        },
+        {
+            "hc-key": "us-ri",
+            "value": 2
+        },
+        {
+            "hc-key": "us-al",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ms",
+            "value": 0
+        },
+        {
+            "hc-key": "us-nc",
+            "value": 0
+        },
+        {
+            "hc-key": "us-va",
+            "value": 1
+        },
+        {
+            "hc-key": "us-ia",
+            "value": 0
+        },
+        {
+            "hc-key": "us-md",
+            "value": 1
+        },
+        {
+            "hc-key": "us-de",
+            "value": 0
+        },
+        {
+            "hc-key": "us-pa",
+            "value": 4
+        },
+        {
+            "hc-key": "us-nj",
+            "value": 6
+        },
+        {
+            "hc-key": "us-ny",
+            "value": 18
+        },
+        {
+            "hc-key": "us-id",
+            "value": 0
+        },
+        {
+            "hc-key": "us-sd",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ct",
+            "value": 8
+        },
+        {
+            "hc-key": "us-nh",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ky",
+            "value": 0
+        },
+        {
+            "hc-key": "us-oh",
+            "value": 6
+        },
+        {
+            "hc-key": "us-tn",
+            "value": 0
+        },
+        {
+            "hc-key": "us-wv",
+            "value": 0
+        },
+        {
+            "hc-key": "us-dc",
+            "value": 0
+        },
+        {
+            "hc-key": "us-la",
+            "value": 0
+        },
+        {
+            "hc-key": "us-fl",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ga",
+            "value": 0
+        },
+        {
+            "hc-key": "us-sc",
+            "value": 0
+        },
+        {
+            "hc-key": "us-mn",
+            "value": 47
+        },
+        {
+            "hc-key": "us-mt",
+            "value": 0
+        },
+        {
+            "hc-key": "us-nd",
+            "value": 1
+        },
+        {
+            "hc-key": "us-az",
+            "value": 1
+        },
+        {
+            "hc-key": "us-ut",
+            "value": 1
+        },
+        {
+            "hc-key": "us-hi",
+            "value": 0
+        },
+        {
+            "hc-key": "us-ak",
+            "value": 3
+        },
+        {
+            "value": 51
+        }
+    ];
+
+    // Initiate the chart
+    $('#container').highcharts('Map', {
+
+        title : {
+            text : 'Top 200 NHL Players by State'
+        },
+
+        subtitle : {
+            text : 'Source map: <a href="https://code.highcharts.com/mapdata/countries/us/us-all.js">United States of America</a>'
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+        colorAxis: {
+            min: 0
+        },
+
+        series : [{
+            data : data,
+            mapData: Highcharts.maps['countries/us/us-all'],
+            joinBy: 'hc-key',
+            name: 'NHL Players within the Top 200',
+            states: {
+                hover: {
+                    color: '#a4edba'
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }, {
+            name: 'Separators',
+            type: 'mapline',
+            data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
+            color: 'silver',
+            showInLegend: false,
+            enableMouseTracking: false
+        }]
+    });
+});
+</script>
+	<style>
+
+		body {
+			width:80%;
+			margin:0 auto;
+			margin-top:40px;
+			color:#2a2a2a;
+		}
+
+		h1 {
+			font-family: Helvetica, Arial, sans-serif;
+			font-size:1.5em;
+			font-weight:600;
+		}
+
+		h2 {
+			font-family: Helvetica;
+			font-size:1.1em;
+			font-style:italic;
+			margin-top:-40px;
+		}
+		/*subhead*/
+
+		h3 {
+			font-family: Helvetica;
+			font-size: 1.0em;
+			font-style:italic;
+			color:#969696;
+		}
+
+		h4 {
+			font-family: Helvetica;
+			font-size:2.1em;
+			font-weight:800;
+			margin-top:-10px;
+
+		}
+
+	h5 {
+			font-family: Helvetica;
+			font-size: 1.0em;
+			font-style:italic;
+			color:#969696;
+		}
+
+		p {
+			font-family: Helvetica, Arial, sans-serif;
+			font-size:1.1em;
+			line-height:1.5em;
+			word-spacing:-1px;
+		}
+
+		img {
+			padding:10px;
+		}
+
+	#container {
+    height: 500px; 
+    min-width: 310px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+	.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<h4>NHL's Top 200 U.S.-Born Players Broken Down by State</h4>
+		<h2>According to these statistics, the closer you live to Canada the better chance you have of donning an NHL jersey.</h2>
+		<h5>Daniel Lopez<br>Published December 15, 2016</h5>
+	</div>
+
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+
+<div id="container"></div>
+
+<hr>
+
+	<div class="story">
+		<h1>Want your kid to be an NHL pro? Raise him as close to Montreal, Québec as possible.</h1>
+		<p>Canada is known for a great many things: maple syrup,fantastically well-mannered locals, and, of course, ice hockey. You would think Canadian babies slide out of the womb onto a frozen lake to start practicing their slapshots before they can even walk. NHL greats like Wayne Gretzky, Mario Lemieux, and Sydney Crosby all hail from America's Hat. This may explain why the overwhleming majority of the best US-born NHL players happen to have been born and raised right next to our northern neighbors. According to <a class="story-link" href="http://www.quanthockey.com/nhl/us-state/nhl-players-born-in-united-states-career-stats.html">QuantHockey's list</a> of the all-time top NHL scorers from the United States, the states producing the most talented NHL players are the states closest to Québec and Ontario. Canada is <i> literally </i> oozing talent down to the United States. The biggest beneficiaries of this effect are Minnesota, Michigan, and Massachusetts, who combine to account for <span class="bold">114 of the top 200 US-born NHL players</span>. The rest of the 200 players are scarcely spread across the United States, with a particular concentration in the northeast corner of the country. This area happens to sit right under Hockey Central, aka Montreal, Québec.</p>
+
+        <p><img src="img/ds2_goals.jpg" align="left" style="margin-right:20px; max-width:550px;"></img>As far as goal scoring goes, Massachusetts, Minnesota, Michigan, New York, and Illinois have contributed the twine-seeking missles launched by players from the United States. Massachusetts leads the pack with 6,127 goals, followed by Minnesota (6,068), Michigan (4,330), New York (3,556), and Illinois (1,431). Massachusetts' goal-scoring finesse have produced player like Jeremy Roenick (513 goals) and Keith Tkachuk (538 goals) who have combined for over 1,000 goals between the two of them alone. Michigan's Mike Modano leads US players with 561 goals. Despite being so young and having some of the least number of games played by hundreds, New York's Patrick Kane has already banked 259 goals to help  solidify himself as the 25th highest scoring US player.  
+		</p>
+
+        <br>
+
+        <p>The rankings slightly shift when looking at overall points scored between goals and assists. Minnesota leads all states with 17,305 points tallied, followed by Massachusetts (14,325), Michigan (11,538), New York (8,488), and Illinois (3,296). These rankings essentially adhere to the number of players each state has in the NHL, meaning the state with more players had the most points. <img src="img/ds2_points.jpg" align="right" style="margin-right:20px; max-width:550px;"></img> But if the data is broken down by the average points per player, the rankings transform prety dramatically. New York suddenly tops the list, due to its 18 players proficciently averaging 471 points. Michigan follows with an average of 412 points from its 28 players. Minnesota (368avg, 47 players), Massachusetts (367avg, 39 players), and Illinois (366avg, 9players) remains in fifth. Michigan's Mike Modano once again tops the list, with 1,374 points (561g, 813a). Despite not appearing in the top 5 states, one of Texas' two representatives, defenseman Brian Leetch, ranks 7th all-time in points with 1,028 points (247g, 781a). There are plenty of outlier players like Brian Leetch that are born around the ice-less southwest yet still develop a knack for scoring. But if you believe in the accuracy of statistics, it would be a good move to raise your young hocey prodigey close to our Canadian cousins in Massachusetts.
+	
+
+</body>
